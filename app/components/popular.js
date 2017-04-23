@@ -5,7 +5,7 @@ import api from '../utils/api';
 const SelectLanguage = props => {
   const languages = ['All', 'Javascript', 'Ruby', 'Java', 'CSS', 'Python'];
   const liStyle = {
-    color: 'red',
+    color: '#d0021b',
   };
   return (
     <ul className="languages">
