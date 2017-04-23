@@ -16,6 +16,7 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['env', 'react'],
+            // plugins: ['transform-es2015-modules-commonjs'],
           },
         },
       },
@@ -25,7 +26,9 @@ module.exports = {
       },
     ],
   },
-  plugins: [new HtmlWebpackPlugin({
-    template: 'app/index.html',
-  })]
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'app/index.html',
+    }),
+  ],
 };
