@@ -7,9 +7,9 @@ const params = `?client_id=${id}&client_secret=${sec}`;
 const getProfile = username => axios.get(`https://api.github.com/users/${username}${params}`).then(user => user.data);
 
 const getRepos = username =>
-  axios.get(`https://api.github.com/users/${username}/repos${params}&per_page=100`).then(user => user.data);
+  axios.get(`https://api.github.com/users/${username}/repos${params}&per_page=100`);
 
-const getStarCount = repos => repos.data.reduce((count, repo) => count + repo.stargazers_count, 0);
+const getStarCount = repos => repos.data. reduce((count, repo) => count + repo.stargazers_count, 0);
 
 const calculateScore = (profile, repos) => {
   const { followers } = profile;
@@ -35,9 +35,9 @@ const getUserData = player =>
 
 const sortPlayers = players => players.sort((a, b) => b.score - a.score);
 
-const battle = players => axios.all(players.map(getUserData)).then(sortPlayers).catch(handleError);
+export const battle = players => axios.all(players.map(getUserData)).then(sortPlayers).catch(handleError);
 
-const fetchPopularRepos = language => {
+export const fetchPopularRepos = language => {
   const encodedURI = window.encodeURI(
     'https://api.github.com/search/repositories?q=stars:>1+language:' +
       language +

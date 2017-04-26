@@ -1,28 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-
-const PlayerPreview = props => {
-  const { avatar, username, id, onReset } = props;
-  return (
-    <div>
-      <div className="column">
-        <img className="avatar" src={avatar} alt={`avatar for ${username}`} />
-        <h2 className="username">@{username}</h2>
-      </div>
-      <button className="reset" onClick={() => onReset(id)}>
-        Reset
-      </button>
-    </div>
-  );
-};
-
-PlayerPreview.propTypes = {
-  id: PropTypes.string.isRequired,
-  avatar: PropTypes.string.isRequired,
-  username: PropTypes.string.isRequired,
-  onReset: PropTypes.func.isRequired,
-};
+import PlayerPreview from './PlayerPreview';
 
 class PlayerInput extends Component {
   constructor(props) {
@@ -117,22 +96,21 @@ class Battle extends Component {
           {!playerOneName && <PlayerInput id="playerOne" label="Player One" onSubmit={this.handleSubmit} />}
 
           {playerOneImage !== null &&
-            <PlayerPreview
-              avatar={playerOneImage}
-              username={playerOneName}
-              onReset={this.handleReset}
-              id="playerOne"
-            />}
+            <PlayerPreview avatar={playerOneImage} username={playerOneName}>
+
+              <button className="reset" onClick={() => this.handleReset('playerOne')}>
+                Reset
+              </button>
+            </PlayerPreview>}
 
           {!playerTwoName && <PlayerInput id="playerTwo" label="Player Two" onSubmit={this.handleSubmit} />}
 
           {playerTwoImage !== null &&
-            <PlayerPreview
-              avatar={playerTwoImage}
-              username={playerTwoName}
-              onReset={this.handleReset}
-              id="playerTwo"
-            />}
+            <PlayerPreview avatar={playerTwoImage} username={playerTwoName}>
+              <button className="reset" onClick={() => this.handleReset('playerTwo')}>
+                Reset
+              </button>
+            </PlayerPreview>}
 
         </div>
 
